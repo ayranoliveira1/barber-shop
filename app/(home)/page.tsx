@@ -46,7 +46,7 @@ export default async function Home() {
             </div>
          </div>
 
-         <div className=" mt-6 mb-[3rem ]">
+         <div className=" mt-6 mb-[3rem]">
             <h2 className="px-5 text-xs uppercase text-gray-400 font-bold mb-3">
                Populares
             </h2>
