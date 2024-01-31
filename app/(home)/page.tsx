@@ -5,7 +5,6 @@ import Search from "./_components/search";
 import BookingItem from "../_components/Booking-item";
 import { db } from "../_lib/prisma";
 import BarberShopItem from "./_components/Barbershop-item";
-import Footer from "../_components/Footer";
 
 export default async function Home() {
    // Chamar prisma e pegar barbearias
