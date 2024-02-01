@@ -13,7 +13,7 @@ const Header = () => {
          <CardContent className="flex flex-row justify-between p-5 items-center">
             <Image src="/logo.png" alt="Barber" width={120} height={22} />
             <Sheet>
-               <SheetTrigger>
+               <SheetTrigger asChild>
                   <Button variant="outline" size="icon" className="w-8 h-8">
                      <MenuIcon size={16} />
                   </Button>
