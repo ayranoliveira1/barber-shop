@@ -9,22 +9,24 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 
 const Home = async () => {
-   const session = getServerSession(authOptions);
+   const session = await getServerSession(authOptions);
 
    const [barbershops, confirmedBookings] = await Promise.all([
       await db.barbershop.findMany({}),
-      await db.booking.findMany({
-         where: {
-            userId: session.id,
-            date: {
-               gte: new Date(),
-            },
-         },
-         include: {
-            service: true,
-            barbershop: true,
-         },
-      }),
+      session?.user
+         ? await db.booking.findMany({
+              where: {
+                 userId: (session.user as any).id,
+                 date: {
+                    gte: new Date(),
+                 },
+              },
+              include: {
+                 service: true,
+                 barbershop: true,
+              },
+           })
+         : Promise.resolve([]),
    ]);
 
    return (
