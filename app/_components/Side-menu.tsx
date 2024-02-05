@@ -71,7 +71,7 @@ const SideMenu = () => {
          </div>
 
          {data?.user && (
-            <div className="flex flex-col gap-3 px-5">
+            <div className="flex flex-col gap-3 px-5 mt-2">
                <Button variant="outline" className="justify-start" asChild>
                   <Link href="/bookings">
                      <CalendarIcon size={18} className="mr-2" />
