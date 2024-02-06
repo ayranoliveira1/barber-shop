@@ -11,23 +11,29 @@ import { authOptions } from "../api/auth/[...nextauth]/route";
 const Home = async () => {
    const session = await getServerSession(authOptions);
 
-   const [barbershops, confirmedBookings] = await Promise.all([
-      await db.barbershop.findMany({}),
-      session?.user
-         ? await db.booking.findMany({
-              where: {
-                 userId: (session.user as any).id,
-                 date: {
-                    gte: new Date(),
+   const [barbershops, recomendedBarbershop, confirmedBookings] =
+      await Promise.all([
+         await db.barbershop.findMany({}),
+         await db.barbershop.findMany({
+            orderBy: {
+               id: "asc",
+            },
+         }),
+         session?.user
+            ? await db.booking.findMany({
+                 where: {
+                    userId: (session.user as any).id,
+                    date: {
+                       gte: new Date(),
+                    },
                  },
-              },
-              include: {
-                 service: true,
-                 barbershop: true,
-              },
-           })
-         : Promise.resolve([]),
-   ]);
+                 include: {
+                    service: true,
+                    barbershop: true,
+                 },
+              })
+            : Promise.resolve([]),
+      ]);
 
    return (
       <div>
@@ -86,7 +92,7 @@ const Home = async () => {
                Populares
             </h2>
             <div className="flex px-5 gap-4 overflow-x-auto [&::-webkit-scrollbar]:hidden">
-               {barbershops.map((barbershop: any) => (
+               {recomendedBarbershop.map((barbershop: any) => (
                   <div className="min-w-[167px] max-w-[167px]">
                      <BarberShopItem
                         key={barbershop.id}
