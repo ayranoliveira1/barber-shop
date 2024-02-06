@@ -24,11 +24,16 @@ const formSchema = z.object({
       .min(1, "Campo obrigatorio"),
 });
 
-const Search = () => {
+interface SearchProps {
+   defaultValues?: z.infer<typeof formSchema>;
+}
+
+const Search = ({ defaultValues }: SearchProps) => {
    const router = useRouter();
 
    const form = useForm<z.infer<typeof formSchema>>({
       resolver: zodResolver(formSchema),
+      defaultValues,
    });
 
    const handleSubmit = (date: z.infer<typeof formSchema>) => {
