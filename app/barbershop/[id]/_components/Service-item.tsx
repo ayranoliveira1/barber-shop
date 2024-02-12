@@ -24,6 +24,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { getDayBookings } from "../_actions/Get-day-bookings";
 import { Ruthie } from "next/font/google";
+import BookingInfo from "@/app/_components/booking-info";
 
 interface ServiceItemProps {
    barbershop: Barbershop;
@@ -238,57 +239,25 @@ const ServiceItem = ({
                               </div>
                            )}
 
-                           <div className="py-6 px-5 border-t border-solid border-secondary">
-                              <Card>
-                                 <CardContent className="flex flex-col gap-3 p-3">
-                                    <div className="flex justify-between">
-                                       <h2 className="font-bold">
-                                          {service.name}
-                                       </h2>
-                                       <h3 className="font-bold text-sm">
-                                          {" "}
-                                          {Intl.NumberFormat("pt-BR", {
-                                             style: "currency",
-                                             currency: "BRL",
-                                          }).format(Number(service.price))}
-                                       </h3>
-                                    </div>
-
-                                    {date && (
-                                       <div className="flex justify-between">
-                                          <h3 className="text-gray-400">
-                                             Data
-                                          </h3>
-                                          <h4 className="text-sm capitalize">
-                                             {format(date, "dd 'de' MMMM", {
-                                                locale: ptBR,
-                                             })}
-                                          </h4>
-                                       </div>
-                                    )}
-
-                                    {hour && (
-                                       <div className="flex justify-between">
-                                          <h3 className="text-gray-400">
-                                             Horário
-                                          </h3>
-                                          <h4 className="text-sm capitalize">
-                                             {hour}
-                                          </h4>
-                                       </div>
-                                    )}
-
-                                    <div className="flex justify-between">
-                                       <h3 className="text-gray-400">
-                                          Barbearia
-                                       </h3>
-                                       <h4 className="text-sm capitalize">
-                                          {barbershop.name}
-                                       </h4>
-                                    </div>
-                                 </CardContent>
-                              </Card>
+                           <div className="px-5 pb-6">
+                              <BookingInfo
+                                 booking={{
+                                    barbershop: barbershop,
+                                    date:
+                                       date && hour
+                                          ? setMinutes(
+                                               setHours(
+                                                  date,
+                                                  Number(hour.split(":")[0])
+                                               ),
+                                               Number(hour.split(":")[1])
+                                            )
+                                          : undefined,
+                                    service: service,
+                                 }}
+                              />
                            </div>
+
                            <SheetFooter className="px-5">
                               <Button
                                  onClick={handleBookingSubmit}
