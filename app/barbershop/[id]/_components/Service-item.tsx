@@ -239,7 +239,7 @@ const ServiceItem = ({
                               </div>
                            )}
 
-                           <div className="px-5 pb-6">
+                           <div className="px-5 py-6 border-t border-solid border-secondary">
                               <BookingInfo
                                  booking={{
                                     barbershop: barbershop,
