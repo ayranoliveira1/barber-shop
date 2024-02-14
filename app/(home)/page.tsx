@@ -42,7 +42,7 @@ const Home = async () => {
          <div className="px-5 pt-5">
             <h2 className="text-xl font-bold">
                {session?.user
-                  ? `Olá, ${session.user.name?.split(" ")[0]}`
+                  ? `Olá, ${session?.user?.name?.split(" ")[0]}`
                   : "Olá! Vamos agendar uma corte Hoje?"}
             </h2>
             <p className="capitalize text-sm">
@@ -62,11 +62,15 @@ const Home = async () => {
                   <h2 className="pl-5 text-xs uppercase text-gray-400 font-bold mb-3">
                      Agendamentos
                   </h2>
-                  <div className="flex px-5 mt-6 gap-3 overflow-x-auto [&::-webkit-scrollbar]:hidden">
-                     {confirmedBookings.map((booking: any) => (
-                        <BookingItem key={booking.id} booking={booking} />
-                     ))}
-                  </div>
+
+                  {confirmedBookings.map((booking: any) => (
+                     <div
+                        className="flex px-5 mt-6 gap-3 overflow-x-auto [&::-webkit-scrollbar]:hidden"
+                        key={booking.id}
+                     >
+                        <BookingItem booking={booking} />
+                     </div>
+                  ))}
                </>
             )}
          </div>
@@ -77,11 +81,11 @@ const Home = async () => {
             </h2>
             <div className="flex px-5 gap-4 overflow-x-auto [&::-webkit-scrollbar]:hidden">
                {barbershops.map((barbershop: any) => (
-                  <div className="min-w-[167px] max-w-[167px]">
-                     <BarberShopItem
-                        key={barbershop.id}
-                        barbershop={barbershop}
-                     />
+                  <div
+                     className="min-w-[167px] max-w-[167px]"
+                     key={barbershop.id}
+                  >
+                     <BarberShopItem barbershop={barbershop} />
                   </div>
                ))}
             </div>
@@ -93,11 +97,11 @@ const Home = async () => {
             </h2>
             <div className="flex px-5 gap-4 overflow-x-auto [&::-webkit-scrollbar]:hidden">
                {recomendedBarbershop.map((barbershop: any) => (
-                  <div className="min-w-[167px] max-w-[167px]">
-                     <BarberShopItem
-                        key={barbershop.id}
-                        barbershop={barbershop}
-                     />
+                  <div
+                     className="min-w-[167px] max-w-[167px]"
+                     key={barbershop.id}
+                  >
+                     <BarberShopItem barbershop={barbershop} />
                   </div>
                ))}
             </div>
