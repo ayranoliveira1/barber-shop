@@ -1,33 +1,42 @@
 import { Mail, Phone } from "lucide-react";
+import Image from "next/image";
 
 const Footer = () => {
    return (
-      <footer className="w-full bg-secondary pt-2 pb-4 px-3">
-         <div className="flex justify-between px-6">
-            <div className="flex flex-col">
-               <p className="text-base text-gray-300 ">Fale conosco</p>
+      <footer className="flex justify-center w-full bg-secondary pt-5 pb-5 px-3">
+         <div className="flex flex-col gap-4 px-6">
+            <div className="flex justify-center">
+               <p className="font-bold text-2xl">
+                  <Image src="/logo.png" alt="Barber" width={170} height={22} />
+               </p>
+            </div>
 
-               <div className="flex">
-                  <Phone className=" text-gray-400 text-[10px] pr-1 pt-2" />
-                  <p className="pt-2 text-gray-400 text-[11px] font-bold opacity-75">
+            <div className="flex flex-col gap-2">
+               <p className="text-xl text-gray-300 text-center">Fale conosco</p>
+
+               <div className="flex justify-center">
+                  <Phone className=" text-gray-400 text-md pr-1 " />
+                  <p className=" text-gray-400 text-md font-bold opacity-75">
                      +55 32 98434-1504
                   </p>
                </div>
 
-               <div className="flex">
-                  <Mail className=" text-gray-400 text-xs pr-1 pt-2" />
-                  <p className="pt-2 text-gray-400 text-[11px] font-bold opacity-75">
+               <div className="flex justify-center">
+                  <Mail className=" text-gray-400 text-md pr-1 " />
+                  <p className=" text-gray-400 text-md font-bold opacity-75">
                      ayranoliveira1@gmail.com
                   </p>
                </div>
             </div>
 
-            <div className="flex flex-col">
-               <p className="text-base text-gray-300 ">Transparência</p>
-               <p className="pt-2 text-gray-400 text-[11px] font-bold opacity-75">
+            <div className="flex flex-col gap-2">
+               <p className="text-xl text-gray-300 text-center">
+                  Transparência
+               </p>
+               <p className=" text-gray-400 text-md text-center font-bold opacity-75">
                   Termos de uso
                </p>
-               <p className="pt-2 text-gray-400 text-[11px] font-bold opacity-75">
+               <p className=" text-gray-400 text-md text-center font-bold opacity-75">
                   Política de privacidade
                </p>
             </div>
