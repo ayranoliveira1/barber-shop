@@ -6,7 +6,7 @@ import BookingItem from "../_components/Booking-item";
 import { db } from "../_lib/prisma";
 import BarberShopItem from "./_components/Barbershop-item";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import { authOptions } from "../_lib/auth";
 
 const Home = async () => {
    const session = await getServerSession(authOptions);
