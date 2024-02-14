@@ -116,7 +116,7 @@ const BookingItem = ({ booking }: BookingItemProps) => {
                   />
                   <div className="w-full absolute bottom-4 left-0 px-5">
                      <Card>
-                        <CardContent className="flex p-3 gap-2">
+                        <CardContent className="flex px-2 py-3 gap-2">
                            <Avatar>
                               <AvatarImage src={booking.barbershop.imageUrl} />
                            </Avatar>
@@ -125,7 +125,7 @@ const BookingItem = ({ booking }: BookingItemProps) => {
                               <h2 className="font-bold">
                                  {booking.barbershop.name}
                               </h2>
-                              <h3 className="text-xs overflow-hidden text-nowrap text-ellipsis">
+                              <h3 className="text-[11px] overflow-hidden text-ellipsis text-nowrap">
                                  {booking.barbershop.address}
                               </h3>
                            </div>
