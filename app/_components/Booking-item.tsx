@@ -114,7 +114,7 @@ const BookingItem = ({ booking }: BookingItemProps) => {
                      fill
                      alt={booking.barbershop.name}
                   />
-                  <div className="w-full absolute bottom-4 left-0 px-5">
+                  <div className="w-full absolute bottom-4 left-0 px-3">
                      <Card>
                         <CardContent className="flex px-2 py-3 gap-2">
                            <Avatar>
