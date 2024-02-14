@@ -1,8 +1,13 @@
 import { db } from "@/app/_lib/prisma";
 import BarberShopInfo from "./_components/Barbershop-info";
-import ServiceItem from "./_components/Service-item";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import Information from "./_components/information";
+import Service from "./_components/service";
+import {
+   Tabs,
+   TabsContent,
+   TabsList,
+   TabsTrigger,
+} from "@/app/_components/ui/tabs";
 
 interface BarberShopDetailsPageProps {
    params: {
@@ -13,13 +18,6 @@ interface BarberShopDetailsPageProps {
 const BarberShopDetailsPage = async ({
    params,
 }: BarberShopDetailsPageProps) => {
-   const session = await getServerSession(authOptions);
-
-   if (!params.id) {
-      // TODO: redirecionar para home page
-      return null;
-   }
-
    const barbershop = await db.barbershop.findUnique({
       where: {
          id: params.id,
@@ -29,25 +27,34 @@ const BarberShopDetailsPage = async ({
       },
    });
 
-   if (!barbershop) {
-      // TODO: redirecionar para home page
-      return null;
-   }
+   if (!barbershop) return null;
 
    return (
       <div>
          <BarberShopInfo barbershop={barbershop} />
 
-         <div className="px-5 flex flex-col gap-4 py-6">
-            {barbershop.services.map((service: any) => (
-               <ServiceItem
-                  key={service.id}
-                  service={service}
-                  isAuthenticated={!!session?.user}
-                  barbershop={barbershop}
-               />
-            ))}
-         </div>
+         <Tabs className="mb-10 mt-6 xl:hidden" defaultValue="service">
+            <TabsList className="gap-2.5 bg-transparent px-5">
+               <TabsTrigger
+                  value="service"
+                  className="h-9 border border-solid border-[#26272B] text-sm font-bold text-white data-[state=active]:bg-primary"
+               >
+                  Serciços
+               </TabsTrigger>
+               <TabsTrigger
+                  value="information"
+                  className="h-9 border border-solid border-[#26272B] text-sm font-bold text-white data-[state=active]:bg-primary"
+               >
+                  Informações
+               </TabsTrigger>
+            </TabsList>
+            <TabsContent value="service">
+               <Service params={barbershop} />
+            </TabsContent>
+            <TabsContent value="information">
+               <Information />
+            </TabsContent>
+         </Tabs>
       </div>
    );
 };
