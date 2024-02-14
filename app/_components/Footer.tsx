@@ -16,14 +16,12 @@ const Footer = () => {
 
                <div className="flex justify-center">
                   <Phone className=" text-gray-400 text-md pr-1 " />
-                  <p className=" text-gray-400 text-md font-bold opacity-75">
-                     +55 32 98434-1504
-                  </p>
+                  <p className=" text-gray-400 text-md ">+55 32 98434-1504</p>
                </div>
 
                <div className="flex justify-center">
                   <Mail className=" text-gray-400 text-md pr-1 " />
-                  <p className=" text-gray-400 text-md font-bold opacity-75">
+                  <p className=" text-gray-400 text-md">
                      ayranoliveira1@gmail.com
                   </p>
                </div>
@@ -33,10 +31,10 @@ const Footer = () => {
                <p className="text-xl text-gray-300 text-center">
                   Transparência
                </p>
-               <p className=" text-gray-400 text-md text-center font-bold opacity-75">
+               <p className=" text-gray-400 text-md text-center">
                   Termos de uso
                </p>
-               <p className=" text-gray-400 text-md text-center font-bold opacity-75">
+               <p className=" text-gray-400 text-md text-center">
                   Política de privacidade
                </p>
             </div>
