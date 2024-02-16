@@ -1,13 +1,18 @@
 import { db } from "@/app/_lib/prisma";
 import BarberShopInfo from "./_components/Barbershop-info";
 import Information from "./_components/information";
-import Service from "./_components/service";
 import {
    Tabs,
    TabsContent,
    TabsList,
    TabsTrigger,
 } from "@/app/_components/ui/tabs";
+import Header from "@/app/_components/Header";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/_lib/auth";
+import ServiceItem from "./_components/Service-item";
+import InformXL from "./_components/inform-xl";
+import { Barbershop } from "@prisma/client";
 
 interface BarberShopDetailsPageProps {
    params: {
@@ -18,6 +23,8 @@ interface BarberShopDetailsPageProps {
 const BarberShopDetailsPage = async ({
    params,
 }: BarberShopDetailsPageProps) => {
+   const session = await getServerSession(authOptions);
+
    const barbershop = await db.barbershop.findUnique({
       where: {
          id: params.id,
@@ -30,8 +37,35 @@ const BarberShopDetailsPage = async ({
    if (!barbershop) return null;
 
    return (
-      <div>
-         <BarberShopInfo barbershop={barbershop} />
+      <div className="">
+         <div className="hidden xl:grid">
+            <Header />
+         </div>
+
+         <div className="xl:w-[83%] xl:mx-auto xl:flex xl:gap-10 xl:mt-10 xl:rounded-2xl">
+            <div className="xl:w-[65%] xl:rounded-2xl">
+               <div className="xl:mx-auto xl:rounded-2xl">
+                  <BarberShopInfo barbershop={barbershop} />
+               </div>
+               <div className="hidden xl:grid xl:justify-center">
+                  <h3 className="text-lg font-bold pt-6 text-gray-400">
+                     Serviços
+                  </h3>
+                  <div className="grid grid-cols-2 gap-4 pt-3 pb-6">
+                     {barbershop.services.map((service: any) => (
+                        <ServiceItem
+                           key={service.id}
+                           service={service}
+                           isAuthenticated={!!session?.user}
+                           barbershop={barbershop}
+                        />
+                     ))}
+                  </div>
+               </div>
+            </div>
+
+            <InformXL barbershop={barbershop} />
+         </div>
 
          <Tabs className="mb-10 mt-6 xl:hidden" defaultValue="service">
             <TabsList className="gap-2.5 bg-transparent px-5">
@@ -49,7 +83,16 @@ const BarberShopDetailsPage = async ({
                </TabsTrigger>
             </TabsList>
             <TabsContent value="service">
-               <Service params={barbershop} />
+               <div className="px-5 flex flex-col gap-4 py-6">
+                  {barbershop.services.map((service: any) => (
+                     <ServiceItem
+                        key={service.id}
+                        service={service}
+                        isAuthenticated={!!session?.user}
+                        barbershop={barbershop}
+                     />
+                  ))}
+               </div>
             </TabsContent>
             <TabsContent value="information">
                <Information />

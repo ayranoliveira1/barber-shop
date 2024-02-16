@@ -21,11 +21,11 @@ const BarberShopInfo = ({ barbershop }: BarberShopInfoProps) => {
 
    return (
       <div>
-         <div className="h-[250px] w-full relative">
+         <div className="h-[250px] xl:h-[500px] w-full relative">
             <Button
                size="icon"
                variant="outline"
-               className="z-50 top-4 left-4 absolute"
+               className="z-50 top-4 left-4 absolute xl:hidden"
                onClick={handleBackClick}
             >
                <ChevronLeftIcon />
@@ -36,7 +36,7 @@ const BarberShopInfo = ({ barbershop }: BarberShopInfoProps) => {
                   <Button
                      size="icon"
                      variant="outline"
-                     className="z-50 top-4 right-4 absolute"
+                     className="z-50 top-4 right-4 absolute xl:hidden"
                   >
                      <MenuIcon />
                   </Button>
@@ -52,21 +52,29 @@ const BarberShopInfo = ({ barbershop }: BarberShopInfoProps) => {
                fill
                alt={barbershop.name}
                style={{ objectFit: "cover" }}
-               className="opacity-75
-            "
+               className="opacity-75 xl:rounded-2xl"
             />
          </div>
 
-         <div className="px-5 pt-3 pb-6 border-b border-solid border-secondary">
-            <h1 className="text-xl font-bold ">{barbershop.name}</h1>
-            <div className="flex items-center gap-2 mt-2">
-               <MapPinIcon className="text-primary" size={18} />
-               <p className="text-sm">{barbershop.address}</p>
+         <div className="xl:px-0 px-5 pt-3 pb-6 border-b xl:border-none border-solid border-secondary xl:flex xl:justify-between ">
+            <div>
+               <h1 className="text-xl xl:text-2xl font-bold ">
+                  {barbershop.name}
+               </h1>
+               <div className="flex items-center gap-2 mt-2">
+                  <MapPinIcon className="text-primary" size={18} />
+                  <p className="text-sm">{barbershop.address}</p>
+               </div>
             </div>
 
-            <div className="flex items-center gap-2 mt-2">
-               <StarIcon className="text-primary" size={18} />
-               <p className="text-sm">5,0 (899 avaliações)</p>
+            <div className="flex xl:flex-col items-center gap-2 mt-2 xl:rounded-md xl:bg-[#1A1B1F] xl:px-4 xl:pt-3">
+               <div className="hidden xl:flex xl:gap-2 xl:items-center">
+                  <StarIcon className="text-primary" size={22} />
+                  <p className="text-xl">5,0</p>
+               </div>
+               <StarIcon className="xl:hidden text-primary" size={18} />
+               <p className="xl:hidden text-sm">5,0</p>
+               <p className="text-sm">(899 avaliações)</p>
             </div>
          </div>
       </div>
