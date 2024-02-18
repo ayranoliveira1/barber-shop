@@ -3,7 +3,6 @@ import Header from "../_components/Header";
 import { redirect } from "next/navigation";
 import { db } from "../_lib/prisma";
 import BookingItem from "../_components/Booking-item";
-import { isFuture, isPast } from "date-fns";
 import { authOptions } from "../_lib/auth";
 
 const BookingsPage = async () => {
@@ -44,36 +43,37 @@ const BookingsPage = async () => {
       <>
          <Header />
 
-         <div className="px-5 py-6">
+         <div className="px-5 py-6 xl:w-[75%] xl:m-auto">
             <h1 className="text-xl- font-bold mb-6">Agendamentos</h1>
 
-            {confirmedBookings.length > 0 && (
-               <>
-                  <h2 className="text-sm uppercase text-gray-400 font-bold  mb-3">
-                     Confirmados
-                  </h2>
-
-                  <div className="flex flex-col gap-3">
-                     {confirmedBookings.map((booking: any) => (
-                        <BookingItem key={booking.id} booking={booking} />
-                     ))}
-                  </div>
-               </>
-            )}
-
-            {finishedBookings.length > 0 && (
-               <>
-                  <h2 className="text-sm uppercase text-gray-400 font-bold mt-6 mb-3">
-                     Finalizados
-                  </h2>
-
-                  <div className="flex flex-col gap-3">
-                     {finishedBookings.map((booking: any) => (
-                        <BookingItem key={booking.id} booking={booking} />
-                     ))}
-                  </div>
-               </>
-            )}
+            <div className="xl:grid xl:grid-cols-2">
+               <div>
+                  {confirmedBookings.length > 0 && (
+                     <>
+                        <h2 className="text-sm uppercase text-gray-400 font-bold  mb-3">
+                           Confirmados
+                        </h2>
+                        <div className="flex flex-col gap-3">
+                           {confirmedBookings.map((booking: any) => (
+                              <BookingItem key={booking.id} booking={booking} />
+                           ))}
+                        </div>
+                     </>
+                  )}
+                  {finishedBookings.length > 0 && (
+                     <>
+                        <h2 className="text-sm uppercase text-gray-400 font-bold mt-6 mb-3">
+                           Finalizados
+                        </h2>
+                        <div className="flex flex-col gap-3">
+                           {finishedBookings.map((booking: any) => (
+                              <BookingItem key={booking.id} booking={booking} />
+                           ))}
+                        </div>
+                     </>
+                  )}
+               </div>
+            </div>
          </div>
       </>
    );
