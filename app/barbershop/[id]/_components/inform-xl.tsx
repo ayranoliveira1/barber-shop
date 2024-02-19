@@ -31,7 +31,7 @@ const InformXL = ({ barbershop }: BookingItemProps) => {
             </div>
          </div>
 
-         <Information />
+         <Information barbershop={barbershop} />
 
          <div className="border-b border-solid border-secondary"></div>
 

@@ -95,7 +95,7 @@ const BarberShopDetailsPage = async ({
                </div>
             </TabsContent>
             <TabsContent value="information">
-               <Information />
+               <Information barbershop={barbershop} />
             </TabsContent>
          </Tabs>
       </div>

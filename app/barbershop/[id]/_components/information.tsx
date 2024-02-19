@@ -1,9 +1,14 @@
 "use client";
 
 import { Button } from "@/app/_components/ui/button";
+import { Barbershop } from "@prisma/client";
 import { Smartphone } from "lucide-react";
 
-const Information = () => {
+interface BarbersopInformProps {
+   barbershop: Barbershop;
+}
+
+const Information = ({ barbershop }: BarbersopInformProps) => {
    return (
       <div>
          <div className="w-full border-b border-solid border-secondary py-6">
@@ -12,10 +17,10 @@ const Information = () => {
                Sobre Nós
             </p>
             <p className="px-5 xl:px-0">
-               Bem-vindo à Vintage Barber, onde tradição encontra estilo. Nossa
-               equipe de mestres barbeiros transforma cortes de cabelo e barbas
-               em obras de arte. Em um ambiente acolhedor, promovemos confiança,
-               estilo e uma comunidade unida.
+               Bem-vindo à {barbershop?.name}, onde tradição encontra estilo.
+               Nossa equipe de mestres barbeiros transforma cortes de cabelo e
+               barbas em obras de arte. Em um ambiente acolhedor, promovemos
+               confiança, estilo e uma comunidade unida.
             </p>
          </div>
 
