@@ -40,15 +40,15 @@ const Home = async () => {
          <Header />
 
          <div className="">
-            <div className="xl:bg-home xl:grid xl:px-32 xl:pt-10 xl:grid-cols-2 xl:pb-12">
+            <div className="xl:bg-home xl:grid xl:px-32 xl:pt-10 xl:grid-cols-2 xl:pb-14">
                <div className="xl:pr-20">
                   <div className="px-5 pt-5">
-                     <h2 className="text-xl font-bold">
+                     <h2 className="text-xl xl:text-2xl font-bold">
                         {session?.user
                            ? `Olá, ${session?.user?.name?.split(" ")[0]}`
                            : "Olá! Vamos agendar uma corte Hoje?"}
                      </h2>
-                     <p className="capitalize text-sm">
+                     <p className="capitalize text-sm xl:text-md">
                         {format(new Date(), "EEEE',' d 'de' MMMM", {
                            locale: ptBR,
                         })}
@@ -93,7 +93,7 @@ const Home = async () => {
                </div>
             </div>
 
-            <div className="mt-6 mb-[3rem] xl:px-32">
+            <div className="mt-8 mb-[3rem] xl:px-32">
                <h2 className="px-5 text-xs uppercase text-gray-400 font-bold mb-3">
                   Populares
                </h2>
