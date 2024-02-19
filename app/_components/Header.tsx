@@ -29,10 +29,28 @@ const Header = () => {
    return (
       <header>
          <Card>
-            <CardContent className="flex flex-row justify-between p-5 xl:px-36 xl:py-8 items-center ">
-               <Link href="/">
-                  <Image src="/logo.png" alt="Barber" width={120} height={22} />
-               </Link>
+            <CardContent className="flex flex-row justify-between p-5 xl:px-36 xl:py-6 items-center ">
+               <div className="xl:hidden">
+                  <Link href="/">
+                     <Image
+                        src="/logo.png"
+                        alt="Barber"
+                        width={120}
+                        height={22}
+                     />
+                  </Link>
+               </div>
+
+               <div className="hidden xl:flex">
+                  <Link href="/">
+                     <Image
+                        src="/logo.png"
+                        alt="Barber"
+                        width={140}
+                        height={26}
+                     />
+                  </Link>
+               </div>
 
                <div className="hidden xl:flex xl:gap-3 xl:items-center">
                   <div>
@@ -54,14 +72,14 @@ const Header = () => {
 
                   <div>
                      {data?.user ? (
-                        <div className="flex gap-3 items-center">
+                        <div className="flex gap-3 pt-1 items-center">
                            <div className="flex items-center gap-3 ">
                               <Avatar className="w-8 h-8">
                                  <AvatarImage src={data.user?.image ?? ""} />
                               </Avatar>
                               <h2 className="font-bold">{data.user.name}</h2>
                            </div>
-                           <Button variant="secondary" size="icon">
+                           <Button variant="ghost" size="icon">
                               <LogOutIcon onClick={handleLogoutClick} />
                            </Button>
                         </div>
