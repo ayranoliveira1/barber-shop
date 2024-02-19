@@ -39,71 +39,90 @@ const Home = async () => {
       <div>
          <Header />
 
-         <div className="px-5 pt-5">
-            <h2 className="text-xl font-bold">
-               {session?.user
-                  ? `Olá, ${session?.user?.name?.split(" ")[0]}`
-                  : "Olá! Vamos agendar uma corte Hoje?"}
-            </h2>
-            <p className="capitalize text-sm">
-               {format(new Date(), "EEEE',' d 'de' MMMM", {
-                  locale: ptBR,
-               })}
-            </p>
-         </div>
+         <div className="">
+            <div className="xl:bg-home xl:grid xl:px-32 xl:pt-10 xl:grid-cols-2 xl:pb-12">
+               <div className="xl:pr-20">
+                  <div className="px-5 pt-5">
+                     <h2 className="text-xl font-bold">
+                        {session?.user
+                           ? `Olá, ${session?.user?.name?.split(" ")[0]}`
+                           : "Olá! Vamos agendar uma corte Hoje?"}
+                     </h2>
+                     <p className="capitalize text-sm">
+                        {format(new Date(), "EEEE',' d 'de' MMMM", {
+                           locale: ptBR,
+                        })}
+                     </p>
+                  </div>
+                  <div className="px-5 mt-6">
+                     <Search />
+                  </div>
+                  <div className="mt-6">
+                     {confirmedBookings.length > 0 && (
+                        <>
+                           <h2 className="pl-5 text-xs uppercase text-gray-400 font-bold mb-3">
+                              Agendamentos
+                           </h2>
+                           {confirmedBookings.map((booking: any) => (
+                              <div
+                                 className="flex px-5 mt-6 gap-3 overflow-x-auto [&::-webkit-scrollbar]:hidden"
+                                 key={booking.id}
+                              >
+                                 <BookingItem booking={booking} />
+                              </div>
+                           ))}
+                        </>
+                     )}
+                  </div>
+               </div>
 
-         <div className="px-5 mt-6">
-            <Search />
-         </div>
-
-         <div className="mt-6">
-            {confirmedBookings.length > 0 && (
-               <>
-                  <h2 className="pl-5 text-xs uppercase text-gray-400 font-bold mb-3">
-                     Agendamentos
+               <div className="mt-6">
+                  <h2 className="px-5 text-xs uppercase text-gray-400 font-bold mb-3">
+                     Recomendados
                   </h2>
+                  <div className="flex px-5 gap-4 overflow-x-auto [&::-webkit-scrollbar]:hidden">
+                     {recomendedBarbershop.map((barbershop: any) => (
+                        <div
+                           className="min-w-[167px] max-w-[167px] xl:min-w-[200px] xl:max-w-[200px]"
+                           key={barbershop.id}
+                        >
+                           <BarberShopItem barbershop={barbershop} />
+                        </div>
+                     ))}
+                  </div>
+               </div>
+            </div>
 
-                  {confirmedBookings.map((booking: any) => (
+            <div className="mt-6 mb-[3rem] xl:px-32">
+               <h2 className="px-5 text-xs uppercase text-gray-400 font-bold mb-3">
+                  Populares
+               </h2>
+               <div className="flex px-5 gap-4 overflow-x-auto [&::-webkit-scrollbar]:hidden">
+                  {barbershops.map((barbershop: any) => (
                      <div
-                        className="flex px-5 mt-6 gap-3 overflow-x-auto [&::-webkit-scrollbar]:hidden"
-                        key={booking.id}
+                        className="min-w-[167px] max-w-[167px] xl:min-w-[200px] xl:max-w-[200px]"
+                        key={barbershop.id}
                      >
-                        <BookingItem booking={booking} />
+                        <BarberShopItem barbershop={barbershop} />
                      </div>
                   ))}
-               </>
-            )}
-         </div>
-
-         <div className=" mt-6">
-            <h2 className="px-5 text-xs uppercase text-gray-400 font-bold mb-3">
-               Recomendados
-            </h2>
-            <div className="flex px-5 gap-4 overflow-x-auto [&::-webkit-scrollbar]:hidden">
-               {barbershops.map((barbershop: any) => (
-                  <div
-                     className="min-w-[167px] max-w-[167px]"
-                     key={barbershop.id}
-                  >
-                     <BarberShopItem barbershop={barbershop} />
-                  </div>
-               ))}
+               </div>
             </div>
-         </div>
 
-         <div className=" mt-6 mb-[3rem]">
-            <h2 className="px-5 text-xs uppercase text-gray-400 font-bold mb-3">
-               Populares
-            </h2>
-            <div className="flex px-5 gap-4 overflow-x-auto [&::-webkit-scrollbar]:hidden">
-               {recomendedBarbershop.map((barbershop: any) => (
-                  <div
-                     className="min-w-[167px] max-w-[167px]"
-                     key={barbershop.id}
-                  >
-                     <BarberShopItem barbershop={barbershop} />
-                  </div>
-               ))}
+            <div className="hidden xl:flex xl:flex-col xl:mt-6 xl:mb-[3rem] xl:px-32">
+               <h2 className="px-5 text-xs uppercase text-gray-400 font-bold mb-3">
+                  Mais visitados
+               </h2>
+               <div className="flex px-5 gap-4 overflow-x-hidden [&::-webkit-scrollbar]:hidden">
+                  {recomendedBarbershop.map((barbershop: any) => (
+                     <div
+                        className="min-w-[200px] max-w-[200px]"
+                        key={barbershop}
+                     >
+                        <BarberShopItem barbershop={barbershop} />
+                     </div>
+                  ))}
+               </div>
             </div>
          </div>
       </div>
