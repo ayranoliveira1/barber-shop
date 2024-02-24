@@ -187,12 +187,11 @@ const ServiceItem = ({
                               <SheetTitle>Fazer Reserva</SheetTitle>
                            </SheetHeader>
 
-                           <div className="py-6 w-full">
+                           <div className="py-6">
                               <Calendar
                                  mode="single"
                                  selected={date}
                                  onSelect={handleDateClick}
-                                 className="mt-6 xl:w-full"
                                  locale={ptBR}
                                  fromDate={new Date()}
                                  styles={{
