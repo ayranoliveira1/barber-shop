@@ -183,11 +183,11 @@ const ServiceItem = ({
                         </SheetTrigger>
 
                         <SheetContent className="p-0">
-                           <SheetHeader className="text-left px-5 py-6 border-b border-solid border-secondary">
+                           <SheetHeader className="text-left px-5 py-4 border-b border-solid border-secondary">
                               <SheetTitle>Fazer Reserva</SheetTitle>
                            </SheetHeader>
 
-                           <div className="py-6">
+                           <div className="py-">
                               <Calendar
                                  mode="single"
                                  selected={date}
@@ -222,7 +222,7 @@ const ServiceItem = ({
 
                            {/* Mostrar lista de horaios apenas se alguma data estiver selecionada */}
                            {date && (
-                              <div className="flex overflow-x-auto [&::-webkit-scrollbar]:hidden py-6 px-5 border-t border-solid border-secondary gap-3">
+                              <div className="flex overflow-x-auto [&::-webkit-scrollbar]:hidden py-4 px-5 border-t border-solid border-secondary gap-3">
                                  {timeList.map((time) => (
                                     <Button
                                        onClick={() => handleHoursClick(time)}
@@ -238,7 +238,7 @@ const ServiceItem = ({
                               </div>
                            )}
 
-                           <div className="px-5 py-6 border-t border-solid border-secondary">
+                           <div className="px-5 py-4 border-t border-solid border-secondary">
                               <BookingInfo
                                  booking={{
                                     barbershop: barbershop,
