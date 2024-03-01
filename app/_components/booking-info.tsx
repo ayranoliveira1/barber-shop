@@ -15,8 +15,10 @@ const BookingInfo = ({ booking }: BookingInfoProps) => {
       <Card>
          <CardContent className="flex flex-col sm:gap-2 gap-3 p-3">
             <div className="flex justify-between">
-               <h2 className="font-bold sm:text-xs">{booking.service.name}</h2>
-               <h3 className="font-bold text-sm sm:text-xs">
+               <h2 className="font-bold text-[13.5px]">
+                  {booking.service.name}
+               </h2>
+               <h3 className="font-bold text-xs">
                   {" "}
                   {Intl.NumberFormat("pt-BR", {
                      style: "currency",
@@ -28,8 +30,8 @@ const BookingInfo = ({ booking }: BookingInfoProps) => {
             {booking.date && (
                <>
                   <div className="flex justify-between">
-                     <h3 className="text-gray-400 sm:text-xs">Data</h3>
-                     <h4 className="text-sm sm:text-xs capitalize">
+                     <h3 className="text-gray-400 text-xs">Data</h3>
+                     <h4 className="text-xs capitalize">
                         {format(booking.date, "dd 'de' MMMM", {
                            locale: ptBR,
                         })}
@@ -37,8 +39,8 @@ const BookingInfo = ({ booking }: BookingInfoProps) => {
                   </div>
 
                   <div className="flex justify-between">
-                     <h3 className="text-gray-400 sm:text-xs">Horário</h3>
-                     <h4 className="text-sm capitalize sm:text-xs">
+                     <h3 className="text-gray-400 text-xs">Horário</h3>
+                     <h4 className="capitalize text-xs">
                         {format(booking.date, "hh:mm")}
                      </h4>
                   </div>
@@ -46,10 +48,8 @@ const BookingInfo = ({ booking }: BookingInfoProps) => {
             )}
 
             <div className="flex justify-between">
-               <h3 className="text-gray-400 sm:text-xs">Barbearia</h3>
-               <h4 className="text-sm capitalize sm:text-xs">
-                  {booking.barbershop.name}
-               </h4>
+               <h3 className="text-gray-400 text-xs">Barbearia</h3>
+               <h4 className="capitalize text-xs">{booking.barbershop.name}</h4>
             </div>
          </CardContent>
       </Card>
