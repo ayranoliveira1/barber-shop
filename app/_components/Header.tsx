@@ -3,18 +3,13 @@
 import Image from "next/image";
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
-import {
-   CalendarIcon,
-   LogInIcon,
-   LogOutIcon,
-   MenuIcon,
-   UserIcon,
-} from "lucide-react";
+import { CalendarIcon, LogInIcon, LogOutIcon, MenuIcon } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import SideMenu from "./Side-menu";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { Avatar, AvatarImage } from "./ui/avatar";
+
 const Header = () => {
    const { data } = useSession();
 

@@ -12,7 +12,6 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/_lib/auth";
 import ServiceItem from "./_components/Service-item";
 import InformXL from "./_components/inform-xl";
-import { Barbershop } from "@prisma/client";
 
 interface BarberShopDetailsPageProps {
    params: {
